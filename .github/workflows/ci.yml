@@ -1,0 +1,166 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+env:
+  UV_CACHE_DIR: /tmp/.uv-cache
+
+jobs:
+  # =============================================================================
+  # QUALITY GATE: Linting, Formatting, Type Checking
+  # =============================================================================
+  quality:
+    name: Quality Gate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          version: "latest"
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: uv sync --dev
+
+      - name: Run Ruff (Lint)
+        run: uv run ruff check --output-format=github .
+
+      - name: Run Ruff (Format Check)
+        run: uv run ruff format --check --diff .
+
+      - name: Run Pyright (Type Check)
+        run: uv run pyright build/ --warnings
+
+  # =============================================================================
+  # TEST GATE: Unit Tests with Coverage
+  # =============================================================================
+  test:
+    name: Tests (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    needs: [quality]
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          version: "latest"
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: uv sync --dev --group test
+
+      - name: Run Pytest with Coverage
+        run: |
+          uv run pytest verify/tests \
+            --cov=build \
+            --cov-report=term-missing \
+            --cov-report=xml:verify/coverage/coverage.xml \
+            --cov-report=html:verify/coverage/html \
+            --cov-fail-under=0 \
+            -v \
+            --tb=short
+
+      - name: Upload Coverage Report
+        uses: actions/upload-artifact@v4
+        if: matrix.python-version == '3.12'
+        with:
+          name: coverage-report
+          path: verify/coverage/
+          retention-days: 7
+
+      - name: Upload Coverage to Codecov
+        if: matrix.python-version == '3.12'
+        uses: codecov/codecov-action@v4
+        with:
+          files: verify/coverage/coverage.xml
+          flags: unittests
+          fail_ci_if_error: false
+          token: ${{ secrets.CODECOV_TOKEN }}
+
+  # =============================================================================
+  # SECURITY GATE: Security Scanning
+  # =============================================================================
+  security:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    needs: [quality]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          version: "latest"
+          enable-cache: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: uv sync --dev
+
+      - name: Run Bandit Security Scan
+        run: uv run bandit -r build/ -c pyproject.toml
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          severity: 'CRITICAL,HIGH'
+          exit-code: '0'
+          format: 'table'
+
+  # =============================================================================
+  # BUILD INFO: Summary of Quality Gates
+  # =============================================================================
+  build-summary:
+    name: Build Summary
+    runs-on: ubuntu-latest
+    needs: [quality, test, security]
+    if: always()
+    steps:
+      - name: Check Build Status
+        run: |
+          echo "## 🏗️ Build Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Gate | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Quality (Ruff + Pyright) | ${{ needs.quality.result == 'success' && '✅ Passed' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Tests (Pytest) | ${{ needs.test.result == 'success' && '✅ Passed' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Security (Bandit + Trivy) | ${{ needs.security.result == 'success' && '✅ Passed' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [[ "${{ needs.quality.result }}" != "success" || "${{ needs.test.result }}" != "success" || "${{ needs.security.result }}" != "success" ]]; then
+            echo "❌ One or more quality gates failed!"
+            exit 1
+          fi
+          echo "✅ All quality gates passed!"
