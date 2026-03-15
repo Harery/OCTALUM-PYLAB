@@ -1,6 +1,0 @@
-stars=int(input('enter your required stars ? = '))
-
-for i in range(stars):
-    for r in range(i+1):
-        print('*' , end='')
-    print()

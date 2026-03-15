@@ -1,0 +1,17 @@
+services:
+  pylab:
+    build:
+      context: ../..
+      dockerfile: ship/docker/Dockerfile
+    volumes:
+      - ../..:/app
+      - pylab-cache:/root/.cache
+    ports:
+      - "8888:8888"  # Jupyter
+      - "8000:8000"  # MkDocs
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: bash
+
+volumes:
+  pylab-cache:

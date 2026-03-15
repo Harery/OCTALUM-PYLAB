@@ -127,3 +127,35 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Ruff
+.ruff_cache/
+
+# pyright
+pyrightconfig.json
+
+# uv
+.uv/
+uv.lock
+
+# Project-specific
+verify/coverage/html/
+record/docs/site/
+*.mp4
+*.gif
+!learn/visualizations/assets/*.gif
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+*.swp
+*.swo
+*~
+
+# Secrets
+.secrets/
+*.pem
+*.key

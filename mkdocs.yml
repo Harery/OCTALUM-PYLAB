@@ -1,0 +1,163 @@
+site_name: OCTALUM-PYLAB
+site_url: https://harery.com/octalum-pylab
+site_author: OCTALUME
+site_description: Master Python Data Structures & Algorithms Through Guided Experimentation
+
+repo_name: Harery/OCTALUM-PYLAB
+repo_url: https://github.com/Harery/OCTALUM-PYLAB
+edit_uri: edit/main/docs/
+
+copyright: Copyright &copy; 2026 OCTALUME
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+  font:
+    text: Roboto
+    code: Roboto Mono
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.indexes
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - search.share
+    - toc.follow
+    - content.code.annotate
+    - content.code.copy
+    - content.tabs.link
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Harery/OCTALUM-PYLAB
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/company/octalume
+  analytics:
+    feedback:
+      title: Was this page helpful?
+      ratings:
+        - icon: material/thumb-up
+          name: This page was helpful
+          data: 1
+          note: Thanks for your feedback!
+        - icon: material/thumb-down
+          name: This page could be improved
+          data: 0
+          note: Thanks for your feedback!
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: Harery
+      repo: OCTALUM-PYLAB
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+plugins:
+  - search
+  - git-revision-date-localized:
+      enable_creation_date: true
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          paths: [../build]
+          options:
+            show_source: true
+            show_signature_annotations: true
+            separate_signature: true
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Introduction: getting-started/index.md
+      - Prerequisites: getting-started/prerequisites.md
+      - Installation: getting-started/installation.md
+      - Roadmap: getting-started/roadmap.md
+  - Foundations:
+      - Overview: foundations/index.md
+      - Python Basics: foundations/basics.md
+      - Control Flow: foundations/control-flow.md
+      - Functions: foundations/functions.md
+  - Data Structures:
+      - Overview: data-structures/index.md
+      - Arrays & Lists: data-structures/arrays-lists.md
+      - Strings: data-structures/strings.md
+      - Hash Tables: data-structures/hash-tables.md
+      - Linked Lists: data-structures/linked-lists.md
+      - Stacks & Queues: data-structures/stacks-queues.md
+      - Trees: data-structures/trees.md
+      - Graphs: data-structures/graphs.md
+  - Algorithms:
+      - Overview: algorithms/index.md
+      - Searching: algorithms/searching.md
+      - Sorting: algorithms/sorting.md
+      - Recursion: algorithms/recursion.md
+      - Dynamic Programming: algorithms/dp.md
+      - Graph Algorithms: algorithms/graphs.md
+  - Patterns:
+      - Overview: patterns/index.md
+  - Cheatsheets:
+      - Big-O Reference: cheatsheets/big-o.md
+      - Pattern Reference: cheatsheets/patterns.md
+      - Interview Checklist: cheatsheets/interview.md
+  - Contributing: contributing.md

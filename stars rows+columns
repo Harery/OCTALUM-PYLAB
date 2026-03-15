@@ -1,7 +1,0 @@
-rows= int(input('how many rows ? = '))
-columns = int(input('how many columns ? = '))
-
-for r in range(rows):
-    for c in range(columns):
-        print('*', end='')
-    print()

@@ -1,9 +1,0 @@
-First_Set = {65, 42, 78, 83, 23, 57, 29}
-Second_Set = {67, 73, 43, 48, 83, 57, 29}
-
-for x in set(First_Set):
-    for y in set(Second_Set):
-        if x == y :
-            First_Set.remove(x)
-
-print(First_Set)

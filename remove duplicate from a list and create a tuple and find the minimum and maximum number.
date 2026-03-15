@@ -1,7 +1,0 @@
-harerylist = [87, 45, 41, 65, 94, 41, 99, 94]
-print("original list = " , harerylist)
-
-cleanlist = tuple(set(harerylist))
-print("after remove duplicate = " , cleanlist, type(cleanlist))
-print("maximum value of list", max(cleanlist))
-print("minimum value of list", min(cleanlist))

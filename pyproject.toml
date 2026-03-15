@@ -1,0 +1,269 @@
+[project]
+name = "octalum-pylab"
+version = "1.0.0"
+description = "Master Python Data Structures & Algorithms Through Guided Experimentation"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [{ name = "OCTALUME", email = "octalume@harery.com" }]
+keywords = [
+    "python",
+    "data-structures",
+    "algorithms",
+    "learning",
+    "interview-prep",
+    "leetcode",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Education",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=4.1.0",
+    "pytest-xdist>=3.5.0",
+    "hypothesis>=6.98.0",
+    "ruff>=0.3.0",
+    "pyright>=1.1.350",
+    "bandit>=1.7.8",
+    "pre-commit>=3.6.0",
+]
+docs = [
+    "mkdocs>=1.5.0",
+    "mkdocs-material>=9.5.0",
+    "mkdocstrings[python]>=0.24.0",
+    "mkdocs-git-revision-date-localized-plugin>=1.2.0",
+]
+notebooks = [
+    "jupyter>=1.0.0",
+    "marimo>=0.3.0",
+    "matplotlib>=3.8.0",
+    "numpy>=1.26.0",
+]
+visualizations = [
+    "manim>=0.18.0",
+    "graphviz>=0.20.0",
+    "pillow>=10.2.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/Harery/OCTALUM-PYLAB"
+Documentation = "https://harery.com/octalum-pylab"
+Repository = "https://github.com/Harery/OCTALUM-PYLAB"
+Issues = "https://github.com/Harery/OCTALUM-PYLAB/issues"
+
+# =============================================================================
+# RUFF CONFIGURATION (Replaces: flake8, black, isort, pydocstyle, pyupgrade)
+# =============================================================================
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+exclude = [
+    ".git",
+    ".venv",
+    "__pycache__",
+    "*.egg-info",
+    ".mypy_cache",
+    ".pytest_cache",
+    "build",
+    "dist",
+]
+
+[tool.ruff.lint]
+select = [
+    "E",      # pycodestyle errors
+    "W",      # pycodestyle warnings
+    "F",      # Pyflakes
+    "I",      # isort
+    "B",      # flake8-bugbear
+    "C4",     # flake8-comprehensions
+    "UP",     # pyupgrade
+    "ARG",    # flake8-unused-arguments
+    "SIM",    # flake8-simplify
+    "TCH",    # flake8-type-checking
+    "PTH",    # flake8-use-pathlib
+    "ERA",    # eradicate (commented code)
+    "RUF",    # Ruff-specific rules
+    "D",      # pydocstyle
+    "ANN",    # flake8-annotations
+    "S",      # flake8-bandit (security)
+    "N",      # pep8-naming
+    "COM",    # flake8-commas
+    "DTZ",    # flake8-datetimez
+    "T10",    # flake8-debugger
+    "EXE",    # flake8-executable
+    "ISC",    # flake8-implicit-str-concat
+    "ICN",    # flake8-import-conventions
+    "G",      # flake8-logging-format
+    "INP",    # flake8-no-pep420
+    "PIE",    # flake8-pie
+    "PYI",    # flake8-pyi
+    "PT",     # flake8-pytest-style
+    "Q",      # flake8-quotes
+    "RSE",    # flake8-raise
+    "RET",    # flake8-return
+    "SLF",    # flake8-self
+    "SLOT",   # flake8-slots
+    "TID",    # flake8-tidy-imports
+    "T20",    # flake8-print
+    "PERF",   # Perflint
+    "FURB",   # refurb
+]
+ignore = [
+    "D100",   # Missing docstring in public module
+    "D104",   # Missing docstring in public package
+    "D107",   # Missing docstring in __init__
+    "ANN101", # Missing type annotation for self
+    "ANN102", # Missing type annotation for cls
+    "ANN401", # Dynamically typed expressions (Any)
+    "S101",   # Use of assert (needed for tests)
+    "T201",   # print() usage (acceptable in learning repo)
+    "COM812", # Trailing comma missing (conflicts with formatter)
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.isort]
+known-first-party = ["pylab"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101", "D", "ANN"]
+"verify/*" = ["S101", "D", "ANN"]
+"learn/notebooks/*" = ["D", "ANN", "T201"]
+"build/challenges/*" = ["D", "T201"]
+
+# =============================================================================
+# PYRIGHT CONFIGURATION (Type Checker)
+# =============================================================================
+[tool.pyright]
+typeCheckingMode = "standard"
+pythonVersion = "3.10"
+pythonPlatform = "All"
+include = ["build", "verify", "learn", "ship"]
+exclude = [
+    "**/__pycache__",
+    "**/.venv",
+    "**/node_modules",
+    ".git",
+]
+reportMissingImports = "error"
+reportMissingTypeStubs = "warning"
+reportUnusedImport = "warning"
+reportUnusedClass = "warning"
+reportUnusedFunction = "warning"
+reportUnusedVariable = "warning"
+reportDuplicateImport = "warning"
+reportOptionalSubscript = "warning"
+reportOptionalMemberAccess = "warning"
+reportOptionalCall = "warning"
+reportOptionalIterable = "warning"
+reportOptionalContextManager = "warning"
+reportOptionalOperand = "warning"
+strictListInference = true
+strictDictionaryInference = true
+strictSetInference = true
+analyzeUnannotatedFunctions = true
+stubPath = "stubs"
+
+# =============================================================================
+# PYTEST CONFIGURATION
+# =============================================================================
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["verify/tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "-ra",
+    "-q",
+    "--strict-markers",
+    "--strict-config",
+    "--tb=short",
+    "--cov=build",
+    "--cov-report=term-missing",
+    "--cov-report=xml:verify/coverage/coverage.xml",
+    "--cov-fail-under=0",
+]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "visualization: marks tests for visualizations",
+]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::PendingDeprecationWarning",
+]
+
+# =============================================================================
+# COVERAGE CONFIGURATION
+# =============================================================================
+[tool.coverage.run]
+source = ["build"]
+branch = true
+omit = [
+    "*/tests/*",
+    "*/__pycache__/*",
+    "*/.venv/*",
+    "*/site-packages/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "@abstractmethod",
+]
+show_missing = true
+precision = 2
+
+[tool.coverage.html]
+directory = "verify/coverage/html"
+
+[tool.coverage.xml]
+output = "verify/coverage/coverage.xml"
+
+# =============================================================================
+# BANDIT CONFIGURATION (Security)
+# =============================================================================
+[tool.bandit]
+exclude_dirs = ["tests", "verify", ".venv"]
+skips = ["B101", "B311"]
+
+# =============================================================================
+# UV CONFIGURATION (Package Manager)
+# =============================================================================
+[tool.uv]
+dev-dependencies = [
+    "pytest>=8.0.0",
+    "pytest-cov>=4.1.0",
+    "pytest-xdist>=3.5.0",
+    "hypothesis>=6.98.0",
+    "ruff>=0.3.0",
+    "pyright>=1.1.350",
+    "bandit>=1.7.8",
+    "pre-commit>=3.6.0",
+]
+
+# =============================================================================
+# MKDOCS CONFIGURATION
+# =============================================================================
+[tool.mkdocs]
+site_name = "OCTALUM-PYLAB"
+site_url = "https://harery.com/octalum-pylab"
