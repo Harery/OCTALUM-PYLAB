@@ -32,7 +32,9 @@ def run_pytest(args: list[str]) -> int:
 def run_with_coverage() -> int:
     """Run tests with coverage report."""
     cmd = [
-        "uv", "run", "pytest",
+        "uv",
+        "run",
+        "pytest",
         "-v",
         "--cov=build",
         "--cov-report=term-missing",
@@ -71,22 +73,26 @@ def main() -> int:
         help="Run tests for specific module (foundations, data_structures, algorithms)",
     )
     parser.add_argument(
-        "--coverage", "-c",
+        "--coverage",
+        "-c",
         action="store_true",
         help="Run with coverage report",
     )
     parser.add_argument(
-        "--watch", "-w",
+        "--watch",
+        "-w",
         action="store_true",
         help="Run in watch mode",
     )
     parser.add_argument(
-        "--fast", "-f",
+        "--fast",
+        "-f",
         action="store_true",
         help="Skip slow tests",
     )
     parser.add_argument(
-        "--parallel", "-p",
+        "--parallel",
+        "-p",
         action="store_true",
         help="Run tests in parallel",
     )

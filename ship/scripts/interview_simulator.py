@@ -74,13 +74,15 @@ def get_available_problems() -> list[dict[str, str]]:
             problem_id = parts[0] if parts else "???"
             problem_name = parts[1].replace("_", " ").title() if len(parts) > 1 else py_file.stem
 
-            problems.append({
-                "id": problem_id,
-                "name": problem_name,
-                "file": str(py_file.relative_to(PROJECT_ROOT)),
-                "difficulty": difficulty,
-                "category": _guess_category(py_file.stem),
-            })
+            problems.append(
+                {
+                    "id": problem_id,
+                    "name": problem_name,
+                    "file": str(py_file.relative_to(PROJECT_ROOT)),
+                    "difficulty": difficulty,
+                    "category": _guess_category(py_file.stem),
+                }
+            )
 
     return problems
 
@@ -347,24 +349,28 @@ Examples:
     )
 
     parser.add_argument(
-        "--company", "-c",
+        "--company",
+        "-c",
         choices=list(COMPANY_PROFILES.keys()),
         help="Company-specific interview focus",
     )
     parser.add_argument(
-        "--level", "-l",
+        "--level",
+        "-l",
         choices=list(LEVEL_CONFIG.keys()),
         default="mid",
         help="Experience level (default: mid)",
     )
     parser.add_argument(
-        "--time", "-t",
+        "--time",
+        "-t",
         type=int,
         default=45,
         help="Time limit in minutes (default: 45)",
     )
     parser.add_argument(
-        "--stats", "-s",
+        "--stats",
+        "-s",
         action="store_true",
         help="Show session statistics",
     )

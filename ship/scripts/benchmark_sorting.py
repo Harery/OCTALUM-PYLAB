@@ -94,6 +94,7 @@ def quick_sort(arr: list[int]) -> list[int]:
 
 def heap_sort(arr: list[int]) -> list[int]:
     import heapq
+
     result = arr.copy()
     heapq.heapify(result)
     return [heapq.heappop(result) for _ in range(len(result))]
@@ -125,19 +126,22 @@ def benchmark(algorithm: str, data: list[int], repeats: int = 3) -> float:
 def main() -> None:
     parser = argparse.ArgumentParser(description="Sorting Algorithm Benchmark")
     parser.add_argument(
-        "--size", "-s",
+        "--size",
+        "-s",
         type=int,
         default=1000,
         help="Size of array to sort (default: 1000)",
     )
     parser.add_argument(
-        "--algorithms", "-a",
+        "--algorithms",
+        "-a",
         type=str,
         default="all",
         help="Comma-separated algorithms to test (default: all)",
     )
     parser.add_argument(
-        "--repeats", "-r",
+        "--repeats",
+        "-r",
         type=int,
         default=3,
         help="Number of repeats (default: 3)",
@@ -171,9 +175,9 @@ def main() -> None:
         random.shuffle(data)
         data_type = "Random"
 
-    print(f"\n{'='*60}")
+    print(f"\n{'=' * 60}")
     print(f"Sorting Benchmark - {args.size:,} elements ({data_type})")
-    print(f"{'='*60}\n")
+    print(f"{'=' * 60}\n")
 
     print(f"{'Algorithm':<15} {'Time (ms)':<12} {'Ops/sec':<15}")
     print("-" * 45)

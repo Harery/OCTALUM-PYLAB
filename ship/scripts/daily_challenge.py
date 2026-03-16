@@ -65,13 +65,15 @@ def get_available_problems(
             problem_id = parts[0] if parts else "???"
             problem_name = parts[1].replace("_", " ").title() if len(parts) > 1 else py_file.stem
 
-            problems.append({
-                "id": problem_id,
-                "name": problem_name,
-                "file": str(py_file.relative_to(PROJECT_ROOT)),
-                "difficulty": dir_name.replace("leetcode-", ""),
-                "category": _guess_category(py_file.stem),
-            })
+            problems.append(
+                {
+                    "id": problem_id,
+                    "name": problem_name,
+                    "file": str(py_file.relative_to(PROJECT_ROOT)),
+                    "difficulty": dir_name.replace("leetcode-", ""),
+                    "category": _guess_category(py_file.stem),
+                }
+            )
 
     return problems
 
@@ -239,22 +241,26 @@ Examples:
     )
 
     parser.add_argument(
-        "--category", "-c",
+        "--category",
+        "-c",
         choices=list(CATEGORIES.keys()),
         help="Filter by category",
     )
     parser.add_argument(
-        "--difficulty", "-d",
+        "--difficulty",
+        "-d",
         choices=DIFFICULTIES,
         help="Filter by difficulty",
     )
     parser.add_argument(
-        "--log", "-l",
+        "--log",
+        "-l",
         action="store_true",
         help="Log completion of last challenge",
     )
     parser.add_argument(
-        "--stats", "-s",
+        "--stats",
+        "-s",
         action="store_true",
         help="Show progress statistics",
     )
