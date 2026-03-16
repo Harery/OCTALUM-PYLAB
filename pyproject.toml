@@ -156,6 +156,7 @@ exclude = [
 ]
 reportMissingImports = "error"
 reportMissingTypeStubs = "warning"
+reportUnusedImport = "none"
 reportUnusedImport = "warning"
 reportUnusedClass = "warning"
 reportUnusedFunction = "warning"
