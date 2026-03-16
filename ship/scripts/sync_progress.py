@@ -14,7 +14,6 @@ Space Complexity: O(1)
 
 from __future__ import annotations
 
-import re
 from pathlib import Path
 
 # Project root
@@ -138,19 +137,15 @@ def calculate_total_xp() -> tuple[int, int]:
     xp_earned += count_notebooks() * XP_VALUES["notebook"]
 
     # Foundations
-    for _name, count in count_foundations().items():
+    for count in count_foundations().values():
         xp_earned += count * XP_VALUES["foundation"]
 
-    # Data Structures
-    for _name, count in count_data_structures().items():
-        xp_earned += count * XP_VALUES["data_structure"]
-
     # Algorithms
-    for _name, count in count_algorithms().items():
+    for count in count_algorithms().values():
         xp_earned += count * XP_VALUES["algorithm"]
 
     # Patterns
-    for _name, count in count_patterns().items():
+    for count in count_patterns().values():
         xp_earned += count * XP_VALUES["pattern"]
 
     # Max XP for 100% (approximate target)
@@ -163,14 +158,13 @@ def get_level(xp: int) -> tuple[str, str]:
     """Get level name and emoji based on XP."""
     if xp < 100:
         return "🎓 Learner", "learners"
-    elif xp < 250:
+    if xp < 250:
         return "⚡ Coder", "coders"
-    elif xp < 500:
+    if xp < 500:
         return "🔥 Developer", "developers"
-    elif xp < 750:
+    if xp < 750:
         return "💎 Engineer", "engineers"
-    else:
-        return "🏆 Master", "masters"
+    return "🏆 Master", "masters"
 
 
 def generate_progress_bar(percentage: int) -> str:
@@ -216,12 +210,12 @@ Track your journey from Python novice to algorithm master!
 
 | Badge | Status | Requirement |
 |-------|--------|-------------|
-| 🐍 Python Novice | {'✅ Earned' if xp >= 100 else '🔒 Locked'} | Complete foundations (100 XP) |
-| 📊 Data Master | {'✅ Earned' if xp >= 250 else '🔒 Locked'} | Complete data structures (250 XP) |
-| ⚡ Algo Ninja | {'✅ Earned' if xp >= 400 else '🔒 Locked'} | Complete algorithms (400 XP) |
-| 🧩 Pattern Pro | {'✅ Earned' if xp >= 600 else '🔒 Locked'} | Master patterns (600 XP) |
-| 🏆 Interview Ready | {'✅ Earned' if xp >= 800 else '🔒 Locked'} | Complete challenges (800 XP) |
-| 💎 OCTALUM Scholar | {'✅ Earned' if xp >= 1000 else '🔒 Locked'} | 100% completion (1000 XP) |
+| 🐍 Python Novice | {"✅ Earned" if xp >= 100 else "🔒 Locked"} | Complete foundations (100 XP) |
+| 📊 Data Master | {"✅ Earned" if xp >= 250 else "🔒 Locked"} | Complete data structures (250 XP) |
+| ⚡ Algo Ninja | {"✅ Earned" if xp >= 400 else "🔒 Locked"} | Complete algorithms (400 XP) |
+| 🧩 Pattern Pro | {"✅ Earned" if xp >= 600 else "🔒 Locked"} | Master patterns (600 XP) |
+| 🏆 Interview Ready | {"✅ Earned" if xp >= 800 else "🔒 Locked"} | Complete challenges (800 XP) |
+| 💎 OCTALUM Scholar | {"✅ Earned" if xp >= 1000 else "🔒 Locked"} | 100% completion (1000 XP) |
 
 ---
 
@@ -229,11 +223,11 @@ Track your journey from Python novice to algorithm master!
 
 | Difficulty | Completed | XP Each |
 |------------|-----------|---------|
-| 🟢 Easy | {challenges['easy']} | +20 |
-| 🟡 Medium | {challenges['medium']} | +40 |
-| 🔴 Hard | {challenges['hard']} | +60 |
+| 🟢 Easy | {challenges["easy"]} | +20 |
+| 🟡 Medium | {challenges["medium"]} | +40 |
+| 🔴 Hard | {challenges["hard"]} | +60 |
 
-**Total Challenge XP:** {challenges['easy'] * 20 + challenges['medium'] * 40 + challenges['hard'] * 60}
+**Total Challenge XP:** {challenges["easy"] * 20 + challenges["medium"] * 40 + challenges["hard"] * 60}
 
 ---
 
@@ -241,11 +235,11 @@ Track your journey from Python novice to algorithm master!
 
 | Notebook | Status |
 |----------|--------|
-| Sorting Visualization | {'✅' if notebooks >= 1 else '🔒'} |
-| BST Visualization | {'✅' if notebooks >= 2 else '🔒'} |
-| DP Visualization | {'✅' if notebooks >= 3 else '🔒'} |
-| Graph Traversal | {'✅' if notebooks >= 4 else '🔒'} |
-| Pattern Recognition | {'✅' if notebooks >= 5 else '🔒'} |
+| Sorting Visualization | {"✅" if notebooks >= 1 else "🔒"} |
+| BST Visualization | {"✅" if notebooks >= 2 else "🔒"} |
+| DP Visualization | {"✅" if notebooks >= 3 else "🔒"} |
+| Graph Traversal | {"✅" if notebooks >= 4 else "🔒"} |
+| Pattern Recognition | {"✅" if notebooks >= 5 else "🔒"} |
 
 ---
 
@@ -273,7 +267,9 @@ Track your journey from Python novice to algorithm master!
     print(f"✅ PROGRESS.md updated!")
     print(f"   XP: {xp}/{max_xp} ({percentage:.0f}%)")
     print(f"   Level: {level}")
-    print(f"   Challenges: {challenges['easy']} easy, {challenges['medium']} medium, {challenges['hard']} hard")
+    print(
+        f"   Challenges: {challenges['easy']} easy, {challenges['medium']} medium, {challenges['hard']} hard"
+    )
 
 
 def main() -> int:
