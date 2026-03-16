@@ -4,7 +4,7 @@ version = "1.0.0"
 description = "Master Python Data Structures & Algorithms Through Guided Experimentation"
 readme = "README.md"
 license = "MIT"
-requires-python = ">=3.10"
+requires-python = ">=3.12"
 authors = [{ name = "OCTALUME", email = "octalume@harery.com" }]
 keywords = [
     "python",
