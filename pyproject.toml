@@ -56,9 +56,10 @@ visualizations = [
     "pillow>=10.2.0",
 ]
 
-[project.scripts]
-daily-challenge = "ship.scripts.daily_challenge:main"
-interview-sim = "ship.scripts.interview_simulator:main"
+# NOTE: Scripts are run directly via `uv run ship/scripts/daily_challenge.py`
+# [project.scripts]
+# daily-challenge = "ship.scripts.daily_challenge:main"
+# interview-sim = "ship.scripts.interview_simulator:main"
 
 [project.urls]
 Homepage = "https://github.com/Harery/OCTALUM-PYLAB"
@@ -266,12 +267,6 @@ test = [
     "pytest-xdist>=3.5.0",
     "hypothesis>=6.98.0",
 ]
-
-# =============================================================================
-# UV CONFIGURATION
-# =============================================================================
-[tool.uv]
-package = true
 
 # =============================================================================
 # MKDOCS CONFIGURATION
