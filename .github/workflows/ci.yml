@@ -42,7 +42,7 @@ jobs:
         run: uv run ruff format --check --diff .
 
       - name: Run Pyright (Type Check)
-        run: uv run pyright build/ --warnings
+        run: uv run pyright --warnings
 
   # =============================================================================
   # TEST GATE: Unit Tests with Coverage
@@ -77,10 +77,6 @@ jobs:
       - name: Run Pytest with Coverage
         run: |
           uv run pytest verify/tests \
-            --cov=build \
-            --cov-report=term-missing \
-            --cov-report=xml:verify/coverage/coverage.xml \
-            --cov-report=html:verify/coverage/html \
             --cov-fail-under=0 \
             -v \
             --tb=short
