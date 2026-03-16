@@ -147,7 +147,7 @@ known-first-party = ["pylab"]
 typeCheckingMode = "standard"
 pythonVersion = "3.12"
 pythonPlatform = "All"
-include = ["build", "verify", "learn", "ship"]
+include = ["verify", "learn", "ship"]
 exclude = [
     "**/__pycache__",
     "**/.venv",
