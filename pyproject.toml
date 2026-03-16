@@ -138,6 +138,7 @@ known-first-party = ["pylab"]
 "verify/*" = ["S101", "D", "ANN"]
 "learn/notebooks/*" = ["D", "ANN", "T201"]
 "build/challenges/*" = ["D", "T201"]
+"ship/scripts/*" = ["D", "ANN", "S311", "EXE001", "N806", "ARG001", "DTZ005", "PERF203", "F541", "UP035", "PIE808", "D415", "D212"]
 
 # =============================================================================
 # PYRIGHT CONFIGURATION (Type Checker)
