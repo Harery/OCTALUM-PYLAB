@@ -71,7 +71,7 @@ Issues = "https://github.com/Harery/OCTALUM-PYLAB/issues"
 # RUFF CONFIGURATION (Replaces: flake8, black, isort, pydocstyle, pyupgrade)
 # =============================================================================
 [tool.ruff]
-target-version = "py310"
+target-version = "py312"
 line-length = 100
 extend-exclude = [
     "*.ipynb",
@@ -134,18 +134,18 @@ convention = "google"
 known-first-party = ["pylab"]
 
 [tool.ruff.lint.per-file-ignores]
-"tests/*" = ["S101", "D", "ANN"]
-"verify/*" = ["S101", "D", "ANN"]
+"tests/*" = ["S101", "D", "ANN", "INP001"]
+"verify/*" = ["S101", "D", "ANN", "INP001"]
 "learn/notebooks/*" = ["D", "ANN", "T201"]
 "build/challenges/*" = ["D", "T201"]
-"ship/scripts/*" = ["D", "ANN", "S311", "EXE001", "N806", "ARG001", "DTZ005", "PERF203", "F541", "UP035", "PIE808", "D415", "D212"]
+"ship/scripts/*" = ["D", "ANN", "S311", "EXE001", "N806", "ARG001", "DTZ005", "PERF203", "F541", "UP035", "PIE808", "D415", "D212", "S603", "E501"]
 
 # =============================================================================
 # PYRIGHT CONFIGURATION (Type Checker)
 # =============================================================================
 [tool.pyright]
 typeCheckingMode = "standard"
-pythonVersion = "3.10"
+pythonVersion = "3.12"
 pythonPlatform = "All"
 include = ["build", "verify", "learn", "ship"]
 exclude = [

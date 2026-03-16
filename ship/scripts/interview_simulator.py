@@ -260,13 +260,22 @@ def generate_feedback(session: dict) -> str:
     time_ratio = session["actual_time"] / session["time_limit"]
 
     if time_ratio <= 0.5:
-        lines.append(f"\n  Speed: FAST (completed in {session['actual_time']:.1f}/{session['time_limit']} min)")
+        lines.append(
+            f"\n  Speed: FAST (completed in "
+            f"{session['actual_time']:.1f}/{session['time_limit']} min)"
+        )
         lines.append("  Great pace! Make sure you're not rushing.")
     elif time_ratio <= 0.8:
-        lines.append(f"\n  Speed: GOOD (completed in {session['actual_time']:.1f}/{session['time_limit']} min)")
+        lines.append(
+            f"\n  Speed: GOOD (completed in "
+            f"{session['actual_time']:.1f}/{session['time_limit']} min)"
+        )
         lines.append("  Solid timing. Keep practicing for consistency.")
     else:
-        lines.append(f"\n  Speed: SLOW (completed in {session['actual_time']:.1f}/{session['time_limit']} min)")
+        lines.append(
+            f"\n  Speed: SLOW (completed in "
+            f"{session['actual_time']:.1f}/{session['time_limit']} min)"
+        )
         lines.append("  Consider practicing similar problems to improve speed.")
 
     lines.append(f"\n  Category: {session['category']}")
