@@ -1,0 +1,71 @@
+name: 📝 Add New Problem
+description: Request adding a new LeetCode or coding problem
+labels: ["enhancement", "new-problem"]
+body:
+  - type: input
+    id: leetcode_number
+    attributes:
+      label: LeetCode Problem Number
+      description: The LeetCode problem number (if applicable)
+      placeholder: "123"
+
+  - type: input
+    id: problem_name
+    attributes:
+      label: Problem Name
+      placeholder: "Two Sum"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: difficulty
+    attributes:
+      label: Difficulty
+      options:
+        - Easy
+        - Medium
+        - Hard
+    validations:
+      required: true
+
+  - type: dropdown
+    id: pattern
+    attributes:
+      label: Primary Pattern
+      description: What coding pattern does this problem use?
+      options:
+        - Two Pointers
+        - Sliding Window
+        - Fast & Slow Pointers
+        - Merge Intervals
+        - Cyclic Sort
+        - Island (Matrix)
+        - Tree BFS/DFS
+        - Two Heaps
+        - Subsets
+        - Modified Binary Search
+        - Top K Elements
+        - Dynamic Programming
+        - Other / Multiple
+
+  - type: textarea
+    id: problem_link
+    attributes:
+      label: Problem Link
+      description: Link to the problem on LeetCode or other platform
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why Add This Problem?
+      description: Explain why this problem should be added to the collection
+    validations:
+      required: true
+
+  - type: dropdown
+    id: willingness
+    attributes:
+      label: Would you like to submit the solution?
+      options:
+        - "Yes, I'll submit a PR"
+        - "No, just requesting"

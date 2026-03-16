@@ -1,0 +1,48 @@
+name: ❓ Question / Help
+description: Ask a question about the content or get help
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have a question? We're here to help! Please check existing issues first.
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Topic
+      options:
+        - Data Structures
+        - Algorithms
+        - Patterns
+        - LeetCode Problems
+        - Setup/Installation
+        - Documentation
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Your Question
+      description: What would you like to know?
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Provide any relevant context (what you've tried, what you understand, etc.)
+      placeholder: |
+        - I've tried...
+        - I understand that...
+        - I'm confused about...
+
+  - type: textarea
+    id: code
+    attributes:
+      label: Related Code
+      description: If applicable, share relevant code
+      render: python

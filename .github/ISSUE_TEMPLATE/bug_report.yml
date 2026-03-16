@@ -1,0 +1,92 @@
+name: 🐛 Bug Report
+description: Report a bug in code, documentation, or functionality
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report this bug! Please fill out the sections below.
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      description: What type of bug is this?
+      options:
+        - Code Implementation
+        - Documentation
+        - Test
+        - CI/CD
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A clear description of what the bug is
+      placeholder: "When I run the code, it produces incorrect output..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: Steps to reproduce the behavior
+      placeholder: |
+        1. Go to '...'
+        2. Run command '...'
+        3. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What did you expect to happen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What actually happened?
+    validations:
+      required: true
+
+  - type: textarea
+    id: code
+    attributes:
+      label: Code Sample
+      description: Please provide a minimal code sample that reproduces the issue
+      render: python
+      placeholder: |
+        # Your code here
+        pass
+
+  - type: input
+    id: file
+    attributes:
+      label: Affected File(s)
+      description: Which file(s) are affected?
+      placeholder: "build/algorithms/01-searching/binary_search.py"
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Please complete the following information
+      value: |
+        - Python version:
+        - OS:
+        - Additional info:
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Add any other context about the problem here

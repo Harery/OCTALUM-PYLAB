@@ -1,22 +1,49 @@
 ## Description
-Please include a summary of the changes and the related issue.
+
+<!-- Provide a clear description of your changes -->
+
+## Related Issue
+
+<!-- Link to the issue this PR addresses -->
+Closes #
 
 ## Type of Change
-- [ ] Bug fix (non-breaking change which fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
-- [ ] Documentation update
 
-## Checklist
-- [ ] My code follows the style guidelines of this project
-- [ ] I have performed a self-review of my code
-- [ ] I have commented my code where necessary
-- [ ] I have updated the documentation accordingly
-- [ ] My changes generate no new warnings
-- [ ] I have added tests that prove my fix is effective or that my feature works
+- [ ] 🐛 Bug fix (non-breaking change which fixes an issue)
+- [ ] ✨ New algorithm/data structure implementation
+- [ ] 📝 New LeetCode problem solution
+- [ ] 📚 Documentation update
+- [ ] 🔧 Refactoring or optimization
+- [ ] ✅ Test addition/update
+
+## Changes Made
+
+<!-- List the specific changes -->
+
+-
+-
 
 ## Testing
-Please describe the tests that you ran to verify your changes.
 
-## Screenshots (if applicable)
-Add screenshots to help explain your changes.
+```bash
+# Commands run to verify changes
+uv run pytest verify/tests -v
+uv run ruff check .
+```
+
+- [ ] All existing tests pass
+- [ ] Added new tests (if applicable)
+
+## Checklist
+
+- [ ] Code follows project style guidelines (Ruff)
+- [ ] Self-review completed
+- [ ] Type hints added to all functions
+- [ ] Time/space complexity documented
+- [ ] Documentation updated (if needed)
+
+## Code Sample (if applicable)
+
+```python
+# Example usage
+```

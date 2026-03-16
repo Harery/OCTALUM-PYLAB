@@ -57,6 +57,10 @@ visualizations = [
     "pillow>=10.2.0",
 ]
 
+[project.scripts]
+daily-challenge = "ship.scripts.daily_challenge:main"
+interview-sim = "ship.scripts.interview_simulator:main"
+
 [project.urls]
 Homepage = "https://github.com/Harery/OCTALUM-PYLAB"
 Documentation = "https://harery.com/octalum-pylab"
