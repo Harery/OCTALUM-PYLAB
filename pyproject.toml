@@ -138,6 +138,8 @@ known-first-party = ["pylab"]
 "verify/*" = ["S101", "D", "ANN", "INP001", "UP035", "F401", "B033", "PT018", "SIM222", "SIM223", "RET505", "PIE808"]
 "learn/notebooks/*" = ["D", "ANN", "T201"]
 "build/challenges/*" = ["D", "T201"]
+# Educational content in build/ - relax lint rules for learning purposes
+"build/**/*.py" = ["ALL"]
 "ship/scripts/*" = ["D", "ANN", "S311", "EXE001", "N806", "ARG001", "DTZ005", "PERF203", "F541", "UP035", "PIE808", "D415", "D212", "S603", "S607", "E501"]
 
 # =============================================================================
