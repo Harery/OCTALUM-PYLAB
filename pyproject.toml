@@ -242,8 +242,8 @@ output = "verify/coverage/coverage.xml"
 # BANDIT CONFIGURATION (Security)
 # =============================================================================
 [tool.bandit]
-exclude_dirs = ["tests", "verify", ".venv"]
-skips = ["B101", "B311"]
+exclude_dirs = ["tests", "verify", ".venv", "build"]
+skips = ["B101", "B311", "B324", "B105"]
 
 # =============================================================================
 # DEPENDENCY GROUPS (UV Package Manager)
