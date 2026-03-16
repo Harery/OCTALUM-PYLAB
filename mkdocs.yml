@@ -3,9 +3,12 @@ site_url: https://harery.com/octalum-pylab
 site_author: OCTALUME
 site_description: Master Python Data Structures & Algorithms Through Guided Experimentation
 
+docs_dir: record/docs
+site_dir: site
+
 repo_name: Harery/OCTALUM-PYLAB
 repo_url: https://github.com/Harery/OCTALUM-PYLAB
-edit_uri: edit/main/docs/
+edit_uri: edit/main/record/docs/
 
 copyright: Copyright &copy; 2026 OCTALUME
 
